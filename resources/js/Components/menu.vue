@@ -1,14 +1,16 @@
 <template lang="">
-    <li
-        class="sticky border-b-2 border-base-300 top-0 z-10 py-4 flex justify-center items-center bg-base-200"
-        :class="{ hidden: sidebar }"
-    >
-        <div
-            class="text-xl text-center drop-shadow-lg uppercase font-black break-words w-[14rem]"
+    <Link :href="route('dashboard')">
+        <li
+            class="sticky border-b-2 border-base-300 top-0 z-10 py-4 flex justify-center items-center bg-base-200"
+            :class="{ hidden: sidebar }"
         >
-            Perusahaan
-        </div>
-    </li>
+            <div
+                class="text-xl text-center drop-shadow-lg uppercase font-black break-words w-[12rem]"
+            >
+                Perusahaan
+            </div>
+        </li>
+    </Link>
     <li class="flex justify-center w-full gap-2 menu-title my-4">
         <div
             class="w-full h-full gap-2 flex items-center justify-start"
@@ -32,16 +34,18 @@
         </div>
     </li>
     <li class="menu-title mt-4" :class="{ hidden: sidebar }">
-        <span class="label-text truncate">Category</span>
+        <span class="label-text truncate">Dashboard</span>
     </li>
-    <li v-for="item in 5">
-        <a>
-            <i class="fa fa-list"></i>
-            <div :class="{ hidden: sidebar }" class="truncate">
-                Item {{ item }}
-            </div>
-        </a>
-    </li>
+    <Link :href="route('dashboard')">
+        <li>
+            <a :class="{ active: $page.component == 'Dashboard' }">
+                <i class="fa-solid fa-home"></i>
+                <div :class="{ hidden: sidebar }" class="truncate">
+                    Dashboard
+                </div>
+            </a>
+        </li>
+    </Link>
     <li class="menu-title mt-4" :class="{ hidden: sidebar }">
         <span class="label-text truncate">Category</span>
     </li>
@@ -53,6 +57,37 @@
             </div>
         </a>
     </li>
+    <li class="menu-title mt-4" :class="{ hidden: sidebar }">
+        <span class="label-text truncate">Pengaturan</span>
+    </li>
+    <Link :href="route('pengaturan.profil.index')">
+        <li>
+            <a :class="{ active: $page.component == 'pengaturan/profil' }">
+                <i class="fa-solid fa-user-gear"></i>
+                <div :class="{ hidden: sidebar }" class="truncate">Profil</div>
+            </a>
+        </li>
+    </Link>
+    <li>
+        <a>
+            <i class="fa-solid fa-users-gear"></i>
+            <div :class="{ hidden: sidebar }" class="truncate">Users</div>
+        </a>
+    </li>
+    <li>
+        <a>
+            <i class="fa-solid fa-house-lock"></i>
+            <div :class="{ hidden: sidebar }" class="truncate">Perusahaan</div>
+        </a>
+    </li>
+    <Link :href="route('logout')" method="post">
+        <li class="mb-4">
+            <a>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <div :class="{ hidden: sidebar }" class="truncate">Logout</div>
+            </a>
+        </li>
+    </Link>
 </template>
 <script>
 export default {

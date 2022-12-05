@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\pengaturan\ProfilController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +18,10 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return redirect()->route('login');
+});
+
+Route::group(['prefix' => 'pengaturan', 'as' => 'pengaturan.'], function () {
+    Route::resource('profil', ProfilController::class);
 });
 
 Route::get('/dashboard', function () {

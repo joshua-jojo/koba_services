@@ -38,7 +38,7 @@
             <div class="drawer-content flex flex-col">
                 <!-- Page content here -->
                 <div
-                    class="h-[4rem] flex justify-between px-2 shadow-md items-center"
+                    class="h-[3rem] flex justify-between px-2 shadow-md items-center"
                 >
                     <input
                         type="checkbox"
@@ -56,16 +56,35 @@
                         class="btn btn-ghost drawer-button lg:hidden"
                         ><i class="fa-solid fa-bars"></i
                     ></label>
-                    <Link
-                        :href="route('logout')"
-                        method="post"
-                        class="btn btn-sm gap-2 transition-all duration-300 ease-in-out hover:w-max"
-                        ><i class="fa-solid fa-right-from-bracket"></i>
-                        Logout</Link
-                    >
                 </div>
-                <div class="p-5">
-                    <slot></slot>
+                <div class="p-5 overflow-x-hidden">
+                    <transition name="page" mode="out-in" appear>
+                        <main :key="$page.url">
+                            <div
+                                class="text-3xl font-semibold drop-shadow-lg capitalize"
+                            >
+                                {{
+                                    $page.component.split("/")[
+                                        $page.component.split("/").length - 1
+                                    ]
+                                }}
+                            </div>
+                            <div
+                                class="text-sm drop-shadow-lg capitalize breadcrumbs"
+                            >
+                                <ul>
+                                    <li
+                                        v-for="item in $page.component.split(
+                                            '/'
+                                        )"
+                                    >
+                                        {{ item }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <slot></slot>
+                        </main>
+                    </transition>
                 </div>
             </div>
             <div
@@ -73,10 +92,10 @@
             >
                 <label for="my-drawer-2" class="drawer-overlay"></label>
                 <ul
-                    class="menu relative transition-all ease-in-out px-4 bg-base-200 text-base-content scrollbar-hide"
+                    class="menu menu-compact relative transition-all ease-in-out px-4 bg-base-200 text-base-content scrollbar-hide"
                     :class="{
                         'w-[5rem]': sidebar == true,
-                        'w-[16rem]': sidebar == false,
+                        'w-[14rem]': sidebar == false,
                     }"
                 >
                     <!-- Sidebar content here -->
@@ -99,12 +118,6 @@ export default {
     },
     components: {
         Menu,
-    },
-    created() {
-        this.$store.commit("notifikasi", {
-            tipe: "success",
-            pesan: `Selamat Datang ${this.user_aktif.nama}`,
-        });
     },
 };
 </script>
@@ -129,6 +142,32 @@ export default {
     }
     100% {
         transform: translateX(0%);
+    }
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0%;
+}
+.page-enter-to,
+.page-leave-from {
+    opacity: 100%;
+}
+.page-enter-active {
+    animation: fade-in 0.4s ease-in-out;
+}
+.page-leave-active {
+    animation: fade-in 0.4s ease-in-out reverse;
+}
+
+@keyframes fade-in {
+    0% {
+        transform: scale(90%);
+        opacity: 0%;
+    }
+    100% {
+        transform: scale(100%);
+        opacity: 100%;
     }
 }
 </style>
