@@ -141,7 +141,11 @@ export default {
                             >
                         </Link>
                     </div>
-                    <button type="submit" class="btn mt-3 w-full btn-success">
+                    <button
+                        type="submit"
+                        :class="{ 'loading btn-disabled': form.processing }"
+                        class="btn mt-3 w-full btn-success"
+                    >
                         Daftar
                     </button>
                 </form>

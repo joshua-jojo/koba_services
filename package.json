@@ -5,6 +5,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.1",
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
@@ -20,6 +21,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
-        "daisyui": "^2.42.1"
+        "daisyui": "^2.42.1",
+        "tailwind-scrollbar-hide": "^1.1.7",
+        "vuex": "^4.0.2"
     }
 }

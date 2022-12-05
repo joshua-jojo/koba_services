@@ -3,12 +3,35 @@ import "../css/app.css";
 
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/inertia-vue3";
-import { InertiaProgress } from "@inertiajs/progress";
+// import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
+import { createStore } from "vuex";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+const store = createStore({
+    state() {
+        return {
+            notifikasi_master: [],
+            user_data: {
+                nama: null,
+                foto: null,
+            },
+        };
+    },
+    mutations: {
+        notifikasi(state, n) {
+            state.notifikasi_master.unshift(n);
+            setTimeout(() => {
+                state.notifikasi_master.pop();
+            }, 5000);
+        },
+    },
+});
+const mixin = {};
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -20,7 +43,9 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
         return createApp({ render: () => h(app, props) })
             .use(plugin)
+            .use(store)
             .use(ZiggyVue, Ziggy)
+            .mixin(mixin)
             .component("Link", Link)
             .mount(el);
     },

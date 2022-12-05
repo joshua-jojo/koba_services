@@ -96,7 +96,11 @@ export default {
                             >
                         </Link>
                     </div>
-                    <button type="submit" class="btn mt-3 w-full btn-success">
+                    <button
+                        :class="{ 'loading btn-disabled': form.processing }"
+                        type="submit"
+                        class="btn mt-3 w-full btn-success"
+                    >
                         login
                     </button>
                 </form>
