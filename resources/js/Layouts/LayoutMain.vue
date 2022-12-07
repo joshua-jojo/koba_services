@@ -70,7 +70,7 @@
                                 }}
                             </div>
                             <div
-                                class="text-sm drop-shadow-lg capitalize breadcrumbs"
+                                class="text-sm drop-shadow-lg mb-4 capitalize breadcrumbs"
                             >
                                 <ul>
                                     <li
@@ -92,10 +92,10 @@
             >
                 <label for="my-drawer-2" class="drawer-overlay"></label>
                 <ul
-                    class="menu menu-compact relative transition-all ease-in-out px-4 bg-base-200 text-base-content scrollbar-hide"
+                    class="menu relative transition-all ease-in-out px-4 bg-base-200 text-base-content scrollbar-hide"
                     :class="{
                         'w-[5rem]': sidebar == true,
-                        'w-[14rem]': sidebar == false,
+                        'w-[14rem] menu-compact': sidebar == false,
                     }"
                 >
                     <!-- Sidebar content here -->
@@ -131,10 +131,10 @@ export default {
     transform: translateX(0%);
 }
 .notif-enter-active {
-    animation: slide-right 0.7s ease-in-out;
+    animation: slide-right 0.5s ease-in-out;
 }
 .notif-leave-active {
-    animation: slide-right 0.7s ease-in-out reverse;
+    animation: slide-right 0.5s ease-in-out reverse;
 }
 @keyframes slide-right {
     0% {

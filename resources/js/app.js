@@ -9,6 +9,7 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import { createStore } from "vuex";
+import modalMd from "@/Components/modalMd.vue";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -45,6 +46,7 @@ createInertiaApp({
             .use(plugin)
             .use(store)
             .use(ZiggyVue, Ziggy)
+            .component("modal-md", modalMd)
             .mixin(mixin)
             .component("Link", Link)
             .mount(el);

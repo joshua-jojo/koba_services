@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'user_aktif' => [
                 'nama' => $user ? $user->name : '',
+                'email' => $user ? $user->email : '',
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

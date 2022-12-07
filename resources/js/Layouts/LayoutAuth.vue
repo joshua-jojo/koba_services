@@ -2,7 +2,7 @@
     <div
         class="flex justify-center items-center min-h-screen p-8 overflow-hidden select-none"
     >
-        <transition name="page" mode="out-in" appear>
+        <transition name="auth" mode="out-in" appear>
             <main :key="$page.url">
                 <slot></slot>
             </main>
@@ -81,22 +81,22 @@ export default {};
     }
 }
 
-.page-enter-from {
+.auth-enter-from {
     transform: translateX(-200%);
 }
-.page-enter-to {
+.auth-enter-to {
     transform: translateX(0%);
 }
-.page-leave-from {
+.auth-leave-from {
     transform: translateX(0%);
 }
-.page-leave-to {
+.auth-leave-to {
     transform: translateX(200%);
 }
-.page-enter-active {
+.auth-enter-active {
     animation: page-transisi-in 0.7s ease-in-out;
 }
-.page-leave-active {
+.auth-leave-active {
     animation: page-transisi-out 0.7s ease-in-out;
 }
 

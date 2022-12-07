@@ -1,6 +1,6 @@
 <script>
 import LayoutAuth from "@/Layouts/LayoutAuth.vue";
-import { Head, useForm } from "@inertiajs/inertia-vue3";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
     layout: LayoutAuth,
     props: {
@@ -32,8 +32,6 @@ export default {
 
 <template>
     <div>
-        <Head title="Log in" />
-
         <div
             class="grid lg:grid-cols-2 w-full h-full bg-base-200 p-4 rounded-[2rem] max-w-4xl justify-items-center overflow-hidden border-2 border-base-300 shadow-[rgba(0,_0,_0,_0.09)_30px_30px_40px_3px]"
         >
@@ -56,7 +54,7 @@ export default {
                         </label>
                         <input
                             type="text"
-                            class="input input-bordered shadow-lg"
+                            class="input input-bordered shadow-lg input-sm"
                             required
                             placeholder="Masukkan Email"
                             v-model="form.email"
@@ -75,7 +73,7 @@ export default {
                         </label>
                         <input
                             type="password"
-                            class="input input-bordered shadow-lg"
+                            class="input input-bordered shadow-lg input-sm"
                             required
                             placeholder="Masukkan Password"
                             v-model="form.password"

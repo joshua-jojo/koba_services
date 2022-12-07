@@ -5,9 +5,9 @@
             :class="{ hidden: sidebar }"
         >
             <div
-                class="text-xl text-center drop-shadow-lg uppercase font-black break-words w-[12rem]"
+                class="text-xl text-center flex justify-center drop-shadow-lg uppercase font-black break-words w-[12rem]"
             >
-                Perusahaan
+                kobatech
             </div>
         </li>
     </Link>
@@ -47,14 +47,12 @@
         </li>
     </Link>
     <li class="menu-title mt-4" :class="{ hidden: sidebar }">
-        <span class="label-text truncate">Category</span>
+        <span class="label-text truncate">Custom Menu</span>
     </li>
-    <li v-for="item in 5">
+    <li>
         <a>
             <i class="fa fa-list"></i>
-            <div :class="{ hidden: sidebar }" class="truncate">
-                Item {{ item }}
-            </div>
+            <div :class="{ hidden: sidebar }" class="truncate">Custom 1</div>
         </a>
     </li>
     <li class="menu-title mt-4" :class="{ hidden: sidebar }">
@@ -80,13 +78,11 @@
             <div :class="{ hidden: sidebar }" class="truncate">Perusahaan</div>
         </a>
     </li>
-    <Link :href="route('logout')" method="post">
-        <li class="mb-4">
-            <a>
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <div :class="{ hidden: sidebar }" class="truncate">Logout</div>
-            </a>
-        </li>
+    <Link :href="route('logout')" method="post" as="li" class="mb-4">
+        <a>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <div :class="{ hidden: sidebar }" class="truncate">Logout</div>
+        </a>
     </Link>
 </template>
 <script>

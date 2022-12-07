@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Rules\MatchOldPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,8 +41,6 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-
-        return Redirect::route('profile.edit');
     }
 
     /**
@@ -53,7 +52,7 @@ class ProfileController extends Controller
     public function destroy(Request $request)
     {
         $request->validate([
-            'password' => ['required', 'current-password'],
+            'password' => ['required', new MatchOldPassword],
         ]);
 
         $user = $request->user();
