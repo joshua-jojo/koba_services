@@ -1,8 +1,53 @@
 <template lang="">
     <div class="grid lg:grid-cols-2 gap-4 w-full h-full">
-        <div
-            class="w-full h-full card p-4 border shadow-lg flex flex-col lg:col-span-2"
-        >
+        <div class="card shadow-lg">
+            <div
+                class="card-body h-full flex items-center justify-between flex-col"
+            >
+                <div class="card-title h-max uppercase">Foto Profil</div>
+                <div class="h-full w-full flex justify-center">
+                    <img
+                        :src="user_aktif.perusahaan.logo"
+                        alt=""
+                        class="max-h-[10rem]"
+                    />
+                </div>
+                <div class="h-max w-full">
+                    <div class="form-control">
+                        <label class="label label-text">Pilih Gambar</label>
+                        <input
+                            type="file"
+                            class="file-input file-input-bordered file-input-sm w-full"
+                            @input="ganti_foto.foto = $event.target.files[0]"
+                        />
+                        <progress
+                            v-if="ganti_foto.progress"
+                            class="progress progress-primary w-full mt-3"
+                            :value="ganti_foto.progress.percentage"
+                            max="100"
+                        ></progress>
+                        <label
+                            class="label label-text-alt"
+                            v-if="ganti_foto.progress"
+                            >{{ ganti_foto.progress.percentage }}%</label
+                        >
+                    </div>
+                </div>
+                <div class="flex justify-end w-full">
+                    <button
+                        @click="submit_ganti_foto"
+                        :class="{
+                            'loading btn-disabled': ganti_foto.processing,
+                            'btn-disabled': ganti_foto.foto == null,
+                        }"
+                        class="btn btn-info btn-sm"
+                    >
+                        simpan
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-full card p-4 shadow-lg flex flex-col">
             <div class="font-semibold drop-shadow-md mb-2">
                 Update Data Profiles
             </div>
@@ -56,7 +101,7 @@
                 </div>
             </form>
         </div>
-        <div class="w-full h-full card p-4 border shadow-lg flex flex-col">
+        <div class="w-full h-full card p-4 shadow-lg flex flex-col">
             <div class="font-semibold drop-shadow-md mb-2">Ganti Password</div>
             <form @submit.prevent="updatePassword">
                 <div class="form-control">
@@ -127,9 +172,9 @@
                 </div>
             </form>
         </div>
-        <div class="w-full h-max card p-4 border shadow-lg flex flex-col">
+        <div class="w-full h-max card p-4 shadow-lg flex flex-col">
             <div class="font-semibold drop-shadow-md mb-2">Hapus Akun</div>
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm">
                 Setelah akun Anda dihapus, semua sumber daya dan datanya akan
                 dihapus secara permanen. Sebelum menghapus akun anda, harap
                 unduh data atau informasi apa pun yang ingin anda pertahankan.
@@ -199,13 +244,18 @@ export default {
             name: props.user_aktif.nama,
             email: props.user_aktif.email,
         });
+        const ganti_foto = useForm({
+            foto: null,
+        });
         return {
             update_password,
             hapus_akun,
             edit_profile,
+            ganti_foto,
         };
     },
     methods: {
+        submit_ganti_foto() {},
         submit_edit_profile() {
             this.edit_profile.patch(route("profile.update"), {
                 onSuccess: () => {

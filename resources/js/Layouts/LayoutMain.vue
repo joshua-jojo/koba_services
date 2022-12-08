@@ -1,4 +1,19 @@
 <template lang="">
+    <Head>
+        <title>
+            {{
+                $page.component
+                    .split("/")
+                    [$page.component.split("/").length - 1].toUpperCase()
+            }}
+            | {{ user_aktif.perusahaan.nama }}
+        </title>
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            :href="user_aktif.perusahaan.logo"
+        />
+    </Head>
     <div class="min-h-screen overflow-hidden relative">
         <div class="absolute z-10 right-0 p-2">
             <transition-group class="stack" name="notif" tag="div">
@@ -35,10 +50,12 @@
         </div>
         <div class="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col">
+            <div class="drawer-content flex flex-col relative">
                 <!-- Page content here -->
+
+                <!-- navbar  -->
                 <div
-                    class="h-[3rem] flex justify-between px-2 shadow-md items-center"
+                    class="h-[3rem] absolute z-10 backdrop-blur-xl bg-opacity-30 w-full top-0 flex justify-between px-5 shadow-md items-center"
                 >
                     <input
                         type="checkbox"
@@ -56,8 +73,16 @@
                         class="btn btn-ghost drawer-button lg:hidden"
                         ><i class="fa-solid fa-bars"></i
                     ></label>
+                    <label class="swap swap-rotate">
+                        <!-- this hidden checkbox controls the state -->
+                        <input type="checkbox" v-model="form.theme" />
+                        <i class="swap-off text-2xl fa-regular fa-moon"></i>
+                        <i class="swap-on fa-regular text-2xl fa-sun"></i>
+                    </label>
                 </div>
-                <div class="p-5 overflow-x-hidden">
+                <div
+                    class="p-5 pt-[4rem] overflow-x-hidden scrollbar-thin scrollbar-thumb-primary scrollbar-track-gray-100"
+                >
                     <transition name="page" mode="out-in" appear>
                         <main :key="$page.url">
                             <div
@@ -107,7 +132,17 @@
 </template>
 <script>
 import Menu from "@/Components/menu.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 export default {
+    setup(props) {
+        const form = useForm({
+            theme: props.user_aktif.theme == "winter" ? true : false,
+        });
+        document.getElementById("theme").dataset.theme = props.user_aktif.theme;
+        return {
+            form,
+        };
+    },
     props: {
         user_aktif: Object,
     },
@@ -115,6 +150,14 @@ export default {
         return {
             sidebar: false,
         };
+    },
+    watch: {
+        "form.theme"(old_data) {
+            this.form.post(route("theme"));
+            document.getElementById("theme").dataset.theme = old_data
+                ? "winter"
+                : "night";
+        },
     },
     components: {
         Menu,

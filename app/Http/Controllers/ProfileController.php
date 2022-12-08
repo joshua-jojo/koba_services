@@ -66,4 +66,12 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function theme(Request $request)
+    {
+        $user = auth()->user();
+        $user->update([
+            'theme' => ($request->theme ? 'winter' : 'night')
+        ]);
+    }
 }

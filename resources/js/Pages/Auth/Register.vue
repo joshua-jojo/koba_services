@@ -4,6 +4,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 export default {
     props: {
         img: String,
+        user_aktif: Object,
     },
     setup() {
         const form = useForm({

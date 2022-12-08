@@ -2,7 +2,7 @@ import "./bootstrap";
 import "../css/app.css";
 
 import { createApp, h } from "vue";
-import { createInertiaApp, Link } from "@inertiajs/inertia-vue3";
+import { createInertiaApp, Head, Link } from "@inertiajs/inertia-vue3";
 // import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
@@ -10,9 +10,6 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import { createStore } from "vuex";
 import modalMd from "@/Components/modalMd.vue";
-
-const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 const store = createStore({
     state() {
         return {
@@ -35,7 +32,6 @@ const store = createStore({
 const mixin = {};
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,
@@ -47,6 +43,7 @@ createInertiaApp({
             .use(store)
             .use(ZiggyVue, Ziggy)
             .component("modal-md", modalMd)
+            .component("Head", Head)
             .mixin(mixin)
             .component("Link", Link)
             .mount(el);

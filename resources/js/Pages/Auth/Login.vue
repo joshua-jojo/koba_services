@@ -5,6 +5,7 @@ export default {
     layout: LayoutAuth,
     props: {
         img: String,
+        user_aktif: Object,
     },
     setup() {
         const form = useForm({
@@ -87,7 +88,10 @@ export default {
                         </transition>
                     </div>
                     <div class="justify-between flex">
-                        <Link :href="route('register')">
+                        <Link
+                            :href="route('register')"
+                            v-if="user_aktif.satu_perusahaan"
+                        >
                             <label
                                 class="label label-text underline hover:text-primary hover:scale-105 transition-all"
                                 >Daftar Sekarang</label

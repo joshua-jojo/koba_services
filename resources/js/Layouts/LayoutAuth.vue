@@ -1,6 +1,10 @@
 <template lang="">
+    <Head>
+        <link rel="shortcut icon" type="image/png" :href="user_aktif.logo" />
+        <title>{{ this.$page.component.split("/").slice(-1)[0] }}</title>
+    </Head>
     <div
-        class="flex justify-center items-center min-h-screen p-8 overflow-hidden select-none"
+        class="flex justify-center items-center w-full min-h-screen p-8 overflow-hidden select-none"
     >
         <transition name="auth" mode="out-in" appear>
             <main :key="$page.url">
@@ -21,7 +25,11 @@
     </div>
 </template>
 <script>
-export default {};
+export default {
+    props: {
+        user_aktif: Object,
+    },
+};
 </script>
 <style>
 .opacity-enter-active,

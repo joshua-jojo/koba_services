@@ -5,9 +5,17 @@
             :class="{ hidden: sidebar }"
         >
             <div
-                class="text-xl text-center flex justify-center drop-shadow-lg uppercase font-black break-words w-[12rem]"
+                class="text-xl text-center flex flex-col justify-center drop-shadow-lg uppercase font-black break-words w-[12rem]"
             >
-                kobatech
+                <div class="">
+                    <img
+                        :src="user_aktif.perusahaan.logo"
+                        class="bg-cover max-h-[4rem]"
+                    />
+                </div>
+                <div class="">
+                    {{ user_aktif.perusahaan.nama }}
+                </div>
             </div>
         </li>
     </Link>
@@ -66,18 +74,24 @@
             </a>
         </li>
     </Link>
-    <li>
-        <a>
-            <i class="fa-solid fa-users-gear"></i>
-            <div :class="{ hidden: sidebar }" class="truncate">Users</div>
-        </a>
-    </li>
-    <li>
-        <a>
-            <i class="fa-solid fa-house-lock"></i>
-            <div :class="{ hidden: sidebar }" class="truncate">Perusahaan</div>
-        </a>
-    </li>
+    <Link :href="route('pengaturan.users.index')">
+        <li>
+            <a :class="{ active: $page.component == 'pengaturan/users' }">
+                <i class="fa-solid fa-users-gear"></i>
+                <div :class="{ hidden: sidebar }" class="truncate">Users</div>
+            </a>
+        </li>
+    </Link>
+    <Link :href="route('pengaturan.perusahaan.index')">
+        <li>
+            <a :class="{ active: $page.component == 'pengaturan/perusahaan' }">
+                <i class="fa-solid fa-house-lock"></i>
+                <div :class="{ hidden: sidebar }" class="truncate">
+                    Perusahaan
+                </div>
+            </a>
+        </li>
+    </Link>
     <Link :href="route('logout')" method="post" as="li" class="mb-4">
         <a>
             <i class="fa-solid fa-right-from-bracket"></i>
