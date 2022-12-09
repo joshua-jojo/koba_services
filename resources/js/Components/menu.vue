@@ -27,10 +27,7 @@
             <div
                 class="h-full min-w-[2.5rem] max-w-[2.5rem] flex items-center justify-center"
             >
-                <img
-                    src="https://picsum.photos/200"
-                    class="bg-cover rounded-full"
-                />
+                <img :src="user_aktif.foto" class="bg-cover rounded-full" />
             </div>
             <div
                 class="truncate text-[1rem] text-base-content capitalize drop-shadow-md font-semibold"

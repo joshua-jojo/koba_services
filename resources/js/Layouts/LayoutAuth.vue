@@ -11,7 +11,9 @@
                 <slot></slot>
             </main>
         </transition>
-        <div class="absolute min-h-screen min-w-full -z-10 overflow-hidden">
+        <div
+            class="absolute hidden lg:flex min-h-screen min-w-full -z-10 overflow-hidden"
+        >
             <div
                 class="min-h-screen w-full absolute backdrop-blur-[10rem]"
             ></div>

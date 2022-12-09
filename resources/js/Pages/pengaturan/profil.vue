@@ -6,11 +6,7 @@
             >
                 <div class="card-title h-max uppercase">Foto Profil</div>
                 <div class="h-full w-full flex justify-center">
-                    <img
-                        :src="user_aktif.perusahaan.logo"
-                        alt=""
-                        class="max-h-[10rem]"
-                    />
+                    <img :src="user_aktif.foto" alt="" class="max-h-[10rem]" />
                 </div>
                 <div class="h-max w-full">
                     <div class="form-control">
@@ -47,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-full card p-4 shadow-lg flex flex-col">
+        <div class="w-full h-max card p-4 shadow-lg flex flex-col">
             <div class="font-semibold drop-shadow-md mb-2">
                 Update Data Profiles
             </div>
@@ -255,7 +251,16 @@ export default {
         };
     },
     methods: {
-        submit_ganti_foto() {},
+        submit_ganti_foto() {
+            this.ganti_foto.post(route("profile.foto"), {
+                onSuccess: () => {
+                    this.$store.commit("notifikasi", {
+                        tipe: "success",
+                        pesan: "Foto Berhasil diubah",
+                    });
+                },
+            });
+        },
         submit_edit_profile() {
             this.edit_profile.patch(route("profile.update"), {
                 onSuccess: () => {

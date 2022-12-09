@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use File;
 
 class ProfileController extends Controller
 {
@@ -73,5 +74,19 @@ class ProfileController extends Controller
         $user->update([
             'theme' => ($request->theme ? 'winter' : 'night')
         ]);
+    }
+    public function foto(Request $request)
+    {
+        $perusahaan = auth()->user();
+        $foto = $request->foto;
+        $nama_foto = strtotime(date('ymdHis')) . '.' . $foto->extension();
+        $foto->move(public_path('img'), $nama_foto);
+        if ($perusahaan->foto != 'asset/profil.png') {
+            if (file_exists(public_path($perusahaan->foto))) {
+                File::delete(public_path($perusahaan->foto));
+            };
+        }
+        $perusahaan->foto = 'img/' . $nama_foto;
+        $perusahaan->update();
     }
 }

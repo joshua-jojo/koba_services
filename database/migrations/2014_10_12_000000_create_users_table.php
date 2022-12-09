@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('perusahaan_id')->default(0);
             $table->string('theme')->default('winter');
+            $table->string('foto')->default('asset/profil.png');
             $table->rememberToken();
             $table->timestamps();
         });

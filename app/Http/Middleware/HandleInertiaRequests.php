@@ -48,6 +48,7 @@ class HandleInertiaRequests extends Middleware
                 'id' => $user ? $user->id : 0,
                 'nama' => $user ? $user->name : '',
                 'email' => $user ? $user->email : '',
+                'foto' => $user ? url($user->foto) : '',
                 'perusahaan' => $user ? $perusahaan : '',
                 'logo' => asset('asset/logo.png'),
                 'theme' => $user ? $user->theme : 'night',
