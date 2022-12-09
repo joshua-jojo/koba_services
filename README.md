@@ -31,7 +31,7 @@ Untuk start template jalankan perintah
   php artisan ser
 ```
 
-## Aplikasi yang diperlukan
+## Sistem yang diperlukan
 
 
 - NodeJs
