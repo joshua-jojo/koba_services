@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->text('alamat');
             $table->string('password');
-            $table->integer('perusahaan_id')->default(0);
+            $table->integer('perusahaan_id')->default(1);
             $table->string('theme')->default('winter');
             $table->string('foto')->default('asset/profil.png');
             $table->rememberToken();

@@ -13,7 +13,5 @@ class PerusahaanSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        //
-    }
+    { }
 }
